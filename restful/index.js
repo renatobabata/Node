@@ -4,6 +4,7 @@
 const express = require('express');
 const consign = require('consign');
 const bodyParser = require('body-parser');
+const expressValidator = require('express-validator');
 
 //solicitar arquivos
 // ./ indica o diretorio atual
@@ -19,11 +20,13 @@ let app = express();
 
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json());
+app.use(expressValidator());
 
 // -> chama o consign
 // -> inclui todas as rotas que estao no diretorio routes
 // -> insere no app
-consign().include('routes').into(app);
+// -> insere utils
+consign().include('routes').include('utils').into(app);
 
 /*
 // usar recurso
