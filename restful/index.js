@@ -3,6 +3,7 @@
 
 const express = require('express');
 const consign = require('consign');
+const bodyParser = require('body-parser');
 
 //solicitar arquivos
 // ./ indica o diretorio atual
@@ -15,6 +16,9 @@ let routeUsers 	= require('./routes/users')
 // importa todas funcionalidades do express
 // criacao do servidor
 let app = express();
+
+app.use(bodyParser.urlencoded({extended : false}));
+app.use(bodyParser.json());
 
 // -> chama o consign
 // -> inclui todas as rotas que estao no diretorio routes
